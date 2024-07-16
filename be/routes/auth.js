@@ -1,3 +1,5 @@
+// routes/auth.js
+
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -24,7 +26,7 @@ router.post('/forgot-password', async (req, res) => {
     await user.save();
 
     // Invia l'email con il token di reset
-    const resetUrl = `http://localhost:5000/api/auth/reset-password/${token}`;
+    const resetUrl = `http://localhost:3000/reset-password/${token}`; // Modificato per puntare al frontend
     sendEmail(
       email,
       'Reset Password',
@@ -49,7 +51,7 @@ router.post('/reset-password/:token', async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json({ msg: 'Password reset token is invalid or has expired' });
+      return res.status(400).json({ msg: 'Il link di reset della password è scaduto. Prova di nuovo. ' });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -59,7 +61,7 @@ router.post('/reset-password/:token', async (req, res) => {
 
     await user.save();
 
-    res.json({ msg: 'Password has been reset' });
+    res.json({ msg: 'Yes! La password è stata resettata con successo!' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -73,7 +75,7 @@ router.post('/register', async (req, res) => {
   try {
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
+      return res.status(400).json({ msg: 'Sei già registrato con questa mail. Resetta la passsword se non ricordi gli accessi.' });
     }
 
     user = new User({
@@ -108,7 +110,7 @@ router.post('/register', async (req, res) => {
         sendEmail(
           email,
           'Conferma Registrazione',
-          'Grazie per esserti registrato! La tua registrazione è avvenuta con successo.'
+          'Grazie per la registrazione su SeoBoost! Tutto è andato a buon fine!'
         );
       }
     );

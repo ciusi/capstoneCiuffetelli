@@ -1,4 +1,5 @@
-// server.js
+// be\server.js
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -13,8 +14,13 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
-app.use(cors());
+// Configura CORS per permettere richieste dal frontend
+const corsOptions = {
+  origin: 'http://localhost:3000', // Permetti solo richieste da questo dominio
+  credentials: true, // Permetti invio di credenziali (cookie, autorizzazioni, etc.)
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Middleware per gestire le richieste preflight
@@ -31,8 +37,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/core-vitals', require('./routes/coreVitalsAudit'));
 app.use('/seo-in', require('./routes/seoInAudit'));
 app.use('/seo-off', require ('./routes/seoOffAudit'));
-app.use('/seo-off', require('./routes/seoOffAudit'));
-
+app.use('/api/audit', require('./routes/audit'));
 
 // Rotta protetta 
 app.get('/api/protected', auth, (req, res) => {

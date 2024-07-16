@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './global.css';
+@import './typography.css';
+@import './buttons.css';
+@import './navbar.css';
+@import './audit.css';
+@import './forms.css';
+@import './accordion.css';
+@import './toggle.css';
+@import './animations.css';
+@import './register.css';
+@import './welcome.css';
+@import './blogCarusel.css'

@@ -1,0 +1,51 @@
+/* welcome.css */
+.welcome-page {
+  background-color: var(--main-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-text {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.welcome-message {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 2s ease-in-out;
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.analysis-sections {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 20px auto;
+}
+
+.analysis-container {
+  background-color: #fff;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.analysis-container img {
+  width: 50%; /* Imposta la larghezza al 50% */
+  height: auto; /* Mantiene l'altezza proporzionata */
+  margin: 0 auto; /* Centra l'immagine orizzontalmente */
+}

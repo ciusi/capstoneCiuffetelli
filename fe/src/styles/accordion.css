@@ -1,0 +1,8 @@
+.accordion-header {
+  @apply p-3 flex items-center justify-center bg-complementary border border-complementary rounded mb-3 cursor-pointer;
+  color: var(--main-color);
+}
+
+.accordion-content {
+  @apply mb-3;
+}

@@ -1,0 +1,48 @@
+.register-container {
+  @apply p-8 bg-white rounded shadow-md w-full max-w-xl text-center transform transition-transform duration-300 ease-in-out hover:shadow-lg hover:scale-105;
+  margin: 2rem;
+}
+
+.register-container img {
+  @apply mx-auto mb-4 h-12;
+}
+
+.register-container h2 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.register-container p {
+  @apply mb-4;
+}
+
+.register-container form {
+  @apply mb-4;
+}
+
+.register-container .form-input {
+  @apply mt-1 block w-full border-gray-300 rounded shadow-sm mb-4;
+}
+
+.register-container .form-checkbox-container {
+  @apply flex items-center text-left mb-4;
+}
+
+.register-container .form-checkbox {
+  @apply h-4 w-4 text-blue-600;
+}
+
+.register-container .form-checkbox-label {
+  @apply ml-2 text-gray-700;
+}
+
+.register-container .form-button {
+  @apply bg-main text-white py-2 px-4 rounded w-full mb-4 transition duration-300 ease-in-out hover:bg-main-dark;
+}
+
+.register-container .form-link {
+  @apply text-blue-500 hover:underline;
+}
+
+.register-background {
+  @apply min-h-screen bg-main flex items-center justify-center;
+}

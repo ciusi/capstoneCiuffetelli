@@ -1,0 +1,16 @@
+.toggle-checkbox:checked {
+  @apply right-0 border-main;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  @apply bg-main;
+}
+
+.toggle-checkbox {
+  @apply absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer right-0;
+  transition: right 0.2s ease-in;
+}
+
+.toggle-label {
+  @apply block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer;
+}
