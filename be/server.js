@@ -17,10 +17,24 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Middleware per gestire le richieste preflight
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+});
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/core-vitals', require('./routes/coreVitalsAudit'));
+app.use('/seo-in', require('./routes/seoInAudit'));
+app.use('/seo-off', require ('./routes/seoOffAudit'));
+app.use('/seo-off', require('./routes/seoOffAudit'));
 
-// Rotta protetta di esempio
+
+// Rotta protetta 
 app.get('/api/protected', auth, (req, res) => {
   res.send('This is a protected route');
 });
