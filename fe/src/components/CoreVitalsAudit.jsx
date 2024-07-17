@@ -102,7 +102,7 @@ const CoreVitalsAudit = () => {
             </div>
           )}
         </div>
-        <button onClick={handleReset} className="reset-button mt-4">
+        <button onClick={handleReset} className="reset-button p-2 border-none rounded bg-main text-white cursor-pointer transition ease-in-out duration-300">
           Clicca qui se vuoi resettare i risultati e analizzare un altro sito web
         </button>
       </div>
@@ -148,7 +148,7 @@ const CoreVitalsAudit = () => {
   );
 
   return (
-    <div className="section-container p-4 md:p-8">
+    <div className="section-container bg-white p-4 md:p-8">
       <h2 className="text-main text-center text-4xl mb-4">│Core Web Vitals: le performance del tuo sito│</h2>
       <p className="text-main-dark font-ubuntu text-center mb-2">
         In questa sezione puoi analizzare i <strong>Core Vitals</strong>, cioè i valori che indicano la qualità dell'esperienza utente del tuo sito web.

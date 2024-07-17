@@ -93,7 +93,7 @@ const SeoInAudit = () => {
             <HeadingsCard headings={headings} />
           </div>
         </div>
-        <button onClick={handleReset} className="reset-button mt-4">
+        <button onClick={handleReset} className="reset-button mt-4 p-2 border-none rounded bg-main text-white cursor-pointer transition ease-in-out duration-300">
           Clicca qui se vuoi resettare i risultati e analizzare un altro sito web
         </button>
       </div>
@@ -143,7 +143,7 @@ const SeoInAudit = () => {
   );
 
   return (
-    <div className="section-container p-4 md:p-8">
+    <div className="section-container p-4 md:p-8 bg-white">
       <h2 className="text-main text-center text-4xl mb-4">│Analisi SEO-IN: Ottimizza il tuo sito dall'interno│</h2>
       <p className="text-main-dark font-ubuntu text-center mb-2">
         Inserisci l'URL del tuo sito web per analizzare e migliorare i fattori interni di ottimizzazione per i motori di ricerca.

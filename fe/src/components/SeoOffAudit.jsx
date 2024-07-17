@@ -237,7 +237,7 @@ const SeoOffAudit = () => {
   const renderQuestionnaire = () => (
     <div className="p-4 h-96">
       <h3 className="text-main text-2xl mb-4">{questions[currentQuestion].question}</h3>
-      <p className="text-gray-600 italic mb-2">{questions[currentQuestion].explanation}</p>
+      <p className="text-gray-600 text-l italic mb-2">{questions[currentQuestion].explanation}</p>
       <div className="flex flex-col space-y-2">
         {questions[currentQuestion].options.map((option, index) => (
           <button
@@ -264,7 +264,7 @@ const SeoOffAudit = () => {
   );
 
   return (
-    <div className="section-container p-4 md:p-8">
+    <div className="section-container p-4 md:p-8 bg-white">
       <h2 className="text-main text-center text-4xl mb-4">│Analisi SEO-OFF: Ottimizza la tua visibilità esterna│</h2>
       <p className="text-main-dark font-ubuntu text-center mb-2">
         La SEO off-page è fondamentale per migliorare la visibilità del tuo sito web al di fuori del proprio dominio. Scopri come la tua strategia di SEO off-page sta influenzando il tuo sito web.

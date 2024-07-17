@@ -4,25 +4,36 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=League+Spartan:wght@100..900&family=Ubuntu:wght@100..800&display=swap');
 
+:root {
+  --main-color: #005e64;
+  --main-dark-color: #373431;
+  --background-color: #e6e6dd;
+  --complementary-color: #ffffff;
+  --gold-color: #daa520;
+}
 
-  :root {
-    --main-color: #005e64;
-    --main-dark-color: #373431;
-    --background-color: #e6e6dd;
-    --complementary-color: #ffffff;
-    --gold-color: #daa520;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
 
-  body {
-    @apply font-sans bg-background m-0 p-0 text-main-dark;
-    animation: fade-in 1s ease-in;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+body {
+  @apply font-sans bg-background m-0 p-0 text-main-dark;
+  animation: fade-in 1s ease-in;
+}
 
-  .container {
-    @apply mx-8 px-4 md:px-24 lg:px-40; /* Aumenta il padding sui lati */
-  }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.container {
+  @apply mx-8 px-4 md:px-24 lg:px-40;
+}

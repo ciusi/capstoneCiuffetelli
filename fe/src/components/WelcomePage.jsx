@@ -5,7 +5,7 @@ import BlogCarousel from './BlogCarousel';
 
 const WelcomePage = () => {
   return (
-    <div className="welcome-page">
+    <div className="welcome-page bg-main">
       <Navbar />
       <div className="container mx-auto px-4 py-8">
         <div className="welcome-text my-8">
@@ -40,10 +40,10 @@ const WelcomePage = () => {
             </Link>
           </div>
         </div>
+      </div>
 
-        <div >
-          <BlogCarousel />
-        </div>
+      <div>
+        <BlogCarousel />
       </div>
     </div>
   );

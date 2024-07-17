@@ -17,26 +17,24 @@ const BlogCarousel = () => {
   const articlesToShow = articles.slice(0, 6);
 
   return (
-    <div className="bg-main-dark py-8">
-      <div className="blog-container text-center">
-          <h2 className="text-white text-xl font-bold mb-4">Le guide definitive per dare il Boost al tuo sito web</h2>
-          <div className="articles-list grid grid-cols-1 md:grid-cols-3 gap-4">
-            {articlesToShow.map((article, index) => (
-              <div key={index} className="article bg-white p-4 shadow-md">
-                <h3 className="text-lg font-bold mb-2">{article.title}</h3>
-                <p>{article.content}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 flex justify-center">
-            <Link to="/blog" className="blog-link bg-main text-white py-2 px-4 rounded hover:bg-main-dark">
-              Vai al Blog
-            </Link>
+    <div className="blog-carousel bg-main-dark py-8">
+      <div className="blog-container mx-auto max-w-4xl text-center">
+        <h2 className="text-white text-xl font-bold mb-4">Le guide definitive per dare il Boost al tuo sito web</h2>
+        <div className="articles-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {articlesToShow.map((article, index) => (
+            <div key={index} className="article bg-white p-4 shadow-md rounded">
+              <h3 className="text-lg font-bold mb-2">{article.title}</h3>
+              <p>{article.content}</p>
             </div>
-          </div>
+          ))}
         </div>
-     
-   
+        <div className="mt-4 flex justify-center">
+          <Link to="/blog" className="blog-link bg-main text-white py-2 px-4 rounded hover:bg-main-dark">
+            Vai al Blog
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 
