@@ -102,7 +102,7 @@ const CoreVitalsAudit = () => {
             </div>
           )}
         </div>
-        <button onClick={handleReset} className="reset-button p-2 border-none rounded bg-main text-white cursor-pointer transition ease-in-out duration-300">
+        <button onClick={handleReset} className="reset-button p-2 border-none rounded bg-main text-white cursor-pointer transition ease-in-out duration-300 center">
           Clicca qui se vuoi resettare i risultati e analizzare un altro sito web
         </button>
       </div>

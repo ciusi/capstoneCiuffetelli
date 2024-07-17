@@ -10,7 +10,7 @@ const WelcomePage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="welcome-text my-8">
           <div className="welcome-message mx-auto max-w-4xl">
-            <h2>Ciao, benvenuto in SeoBoost!</h2>
+            <h2 className="text-main text-center text-4xl mb-4" >Ciao, benvenuto in SeoBoost!</h2>
             <p><strong>Scegli con quale strumento vuoi iniziare ad analizzare il tuo sito web!</strong> L'analisi dei Core Vitals ti permetterà di stimare le prestazioni del tuo sito web. L'analisi della SEO-in ti aiuterà a capire cosa puoi migliorare nel codice e, infine, l'analisi della SEO-off ti fornirà utili suggerimenti per migliorare popolarità e autorevolezza del tuo sito web.</p>
           </div>
         </div>

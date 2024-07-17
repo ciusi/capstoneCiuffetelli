@@ -12,6 +12,10 @@
   --gold-color: #daa520;
 }
 
+.min-h-screen {
+  min-height: 100vh; /* Imposta l'altezza minima a 100% della finestra del browser */
+}
+
 html, body {
   margin: 0;
   padding: 0;

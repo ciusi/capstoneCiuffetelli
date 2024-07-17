@@ -14,7 +14,7 @@ const Navbar = () => {
             <Link to="/seo-in">Ottimizza il sito web</Link>
             <Link to="/seo-off">Diventa popolare</Link>
           </div>
-          <Link to="/coming-soon" className="navbar-download">Download</Link>
+          <Link to="/coming-soon" className="navbar-download">Log Out</Link>
         </div>
       </div>
     </nav>

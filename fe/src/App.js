@@ -3,14 +3,17 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
-import ResetPassword from './components/ResetPassword'; // Importa il componente
+import ResetPassword from './components/ResetPassword'; 
 import Confirmation from './components/Confirmation';
 import Audit from './components/Audit';
 import PrivateRoute from './components/PrivateRoute';
 import WelcomePage from './components/WelcomePage';
-import CoreVitalsPage from './components/CoreVitalsPage'; // Importa il componente
-import SeoInPage from './components/SeoInPage'; // Importa il componente
-import SeoOffPage from './components/SeoOffPage'; // Importa il componente
+import CoreVitalsPage from './components/CoreVitalsPage'; 
+import SeoInPage from './components/SeoInPage'; 
+import SeoOffPage from './components/SeoOffPage'; 
+import BlogPage from './components/BlogPage'; 
+import BlogPost from './components/BlogPost'; 
+
 function App() {
   return (
     <Router>
@@ -25,7 +28,9 @@ function App() {
         <Route path="/core-vitals" element={<PrivateRoute><CoreVitalsPage /></PrivateRoute>} /> 
         <Route path="/seo-in" element={<PrivateRoute><SeoInPage /></PrivateRoute>} /> 
         <Route path="/seo-off" element={<PrivateRoute><SeoOffPage /></PrivateRoute>} /> 
-        <Route path="*" element={<Login />} /> {/* Redirect to Login */}
+        <Route path="/blog" element={<PrivateRoute><BlogPage /></PrivateRoute>} /> 
+        <Route path="/blog/:id" element={<PrivateRoute><BlogPost /></PrivateRoute>} /> 
+        <Route path="*" element={<Login />} /> 
       </Routes>
     </Router>
   );

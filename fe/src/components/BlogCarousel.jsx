@@ -1,36 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const articles = [
-  { title: "Articolo 1", content: "Contenuto dell'articolo 1" },
-  { title: "Articolo 2", content: "Contenuto dell'articolo 2" },
-  { title: "Articolo 3", content: "Contenuto dell'articolo 3" },
-  { title: "Articolo 4", content: "Contenuto dell'articolo 4" },
-  { title: "Articolo 5", content: "Contenuto dell'articolo 5" },
-  { title: "Articolo 6", content: "Contenuto dell'articolo 6" },
-  { title: "Articolo 7", content: "Contenuto dell'articolo 7" },
-  { title: "Articolo 8", content: "Contenuto dell'articolo 8" },
-  { title: "Articolo 9", content: "Contenuto dell'articolo 9" },
-];
-
 const BlogCarousel = () => {
-  const articlesToShow = articles.slice(0, 6);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/blog');
+        setArticles(response.data.slice(0, 6)); // Mostra solo i primi 6 articoli
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="blog-carousel bg-main-dark py-8">
       <div className="blog-container mx-auto max-w-4xl text-center">
         <h2 className="text-white text-xl font-bold mb-4">Le guide definitive per dare il Boost al tuo sito web</h2>
         <div className="articles-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {articlesToShow.map((article, index) => (
+          {articles.map((article, index) => (
             <div key={index} className="article bg-white p-4 shadow-md rounded">
+              {article.coverImage && (
+                <img 
+                  src={article.coverImage} 
+                  alt={`Copertina di ${article.title}`} 
+                  className="w-full h-32 object-cover mb-4 rounded"
+                />
+              )}
               <h3 className="text-lg font-bold mb-2">{article.title}</h3>
-              <p>{article.content}</p>
+              <p>{article.content.substring(0, 100)}...</p> {/* Mostra solo i primi 100 caratteri */}
+              <Link to={`/blog/${article._id}`} className="text-blue-500 hover:underline">
+                Leggi di più
+              </Link>
             </div>
           ))}
         </div>
         <div className="mt-4 flex justify-center">
           <Link to="/blog" className="blog-link bg-main text-white py-2 px-4 rounded hover:bg-main-dark">
-            Vai al Blog
+            Leggi tutte le Guide di SeoBoost!
           </Link>
         </div>
       </div>

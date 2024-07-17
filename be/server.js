@@ -38,6 +38,7 @@ app.use('/api/core-vitals', require('./routes/coreVitalsAudit'));
 app.use('/seo-in', require('./routes/seoInAudit'));
 app.use('/seo-off', require ('./routes/seoOffAudit'));
 app.use('/api/audit', require('./routes/audit'));
+app.use('/api/blog', require('./routes/blog')); 
 
 // Rotta protetta 
 app.get('/api/protected', auth, (req, res) => {
