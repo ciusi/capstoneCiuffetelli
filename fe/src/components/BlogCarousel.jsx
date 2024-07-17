@@ -27,7 +27,7 @@ const BlogCarousel = () => {
 
   return (
     <div className="blog-carousel bg-main-dark py-8">
-      <div className="blog-container mx-auto max-w-4xl text-center">
+      <div className="blog-container mx-auto max-w-4xl text-center px-4">
         <h2 className="text-white text-xl font-bold mb-4">Le guide definitive per dare il Boost al tuo sito web</h2>
         <div className="articles-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {articles.map((article, index) => (

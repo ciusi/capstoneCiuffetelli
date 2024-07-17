@@ -5,7 +5,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const SeoInAudit = require('../models/SeoInAudit');
 
-// Lista estesa di stop words comuni in italiano e parole di codice JavaScript da escludere
+// Extended list of common stop words in Italian and JavaScript code words to exclude
 const stopWords = new Set([
   'div', 'class', 'id', 'data', 'type', 'widget', 'container', 'async', 'role', 'group', 'element', 'swiper', 'slide', 'elementor',
   'a', 'ad', 'al', 'allo', 'ai', 'agli', 'all', 'agl', 'alla', 'alle', 'con', 'col', 'coi', 'da', 'dal', 'dallo', 'dai', 'dagli', 'dall', 'dagl', 'dalla', 'dalle', 'di', 'del', 'dello', 'dei', 'degli', 'dell', 'degl', 'della', 'delle', 'in', 'nel', 'nello', 'nei', 'negli', 'nell', 'negl', 'nella', 'nelle', 'su', 'sul', 'sullo', 'sui', 'sugli', 'sull', 'sugl', 'sulla', 'sulle', 'per', 'tra', 'contro', 'io', 'tu', 'lui', 'lei', 'noi', 'voi', 'loro', 'mio', 'mia', 'miei', 'mie', 'tuo', 'tua', 'tuoi', 'tue', 'suo', 'sua', 'suoi', 'sue', 'nostro', 'nostra', 'nostri', 'nostre', 'vostro', 'vostra', 'vostri', 'vostre', 'mi', 'ti', 'ci', 'vi', 'lo', 'la', 'li', 'le', 'gli', 'ne', 'il', 'un', 'uno', 'una', 'ma', 'ed', 'se', 'perché', 'anche', 'come', 'dov', 'dove', 'che', 'chi', 'cui', 'non', 'quale', 'quanto', 'quanti', 'quanta', 'quante', 'quello', 'quelli', 'quella', 'quelle', 'questo', 'questi', 'questa', 'queste', 'si', 'tutto', 'tutti', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
@@ -109,12 +109,12 @@ function calculateReadability(text) {
 
 function getTopKeywords(text, limit) {
   const cleanedText = text
-    .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '') // Rimuovi contenuti dei tag <script>
-    .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '') // Rimuovi contenuti dei tag <style>
-    .replace(/<[^>]+>/g, '') // Rimuovi tag HTML
-    .replace(/https?:\/\/[^\s]+/g, '') // Rimuovi URL
-    .replace(/&[^\s;]+;/g, '') // Rimuovi caratteri speciali HTML
-    .replace(/[^a-zA-ZàèéìòùÀÈÉÌÒÙ\s]/g, ''); // Rimuovi tutto tranne lettere e spazi
+    .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, '') // Remove tag <script>
+    .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, '') // Remove tag <style>
+    .replace(/<[^>]+>/g, '') // Remove tag HTML
+    .replace(/https?:\/\/[^\s]+/g, '') // Remove URL
+    .replace(/&[^\s;]+;/g, '') // Remove HTML special characters
+    .replace(/[^a-zA-ZàèéìòùÀÈÉÌÒÙ\s]/g, ''); // Remove everything except letters and spaces
 
   const words = cleanedText.toLowerCase().split(/\s+/);
 

@@ -1,4 +1,3 @@
-// routes/auth.js
 
 const express = require('express');
 const bcrypt = require('bcryptjs');
@@ -8,7 +7,7 @@ const User = require('../models/User');
 const sendEmail = require('../utils.js/email'); 
 const router = express.Router();
 
-// Richiedi reset password
+// Request reset password
 router.post('/forgot-password', async (req, res) => {
   const { email } = req.body;
 
@@ -25,7 +24,7 @@ router.post('/forgot-password', async (req, res) => {
 
     await user.save();
 
-    // Invia l'email con il token di reset
+    // Send email with reset token
     const resetUrl = `http://localhost:3000/reset-password/${token}`; // Modificato per puntare al frontend
     sendEmail(
       email,
@@ -40,7 +39,7 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 
-// Resetta la password
+// Reset password
 router.post('/reset-password/:token', async (req, res) => {
   const { password } = req.body;
 
@@ -68,7 +67,7 @@ router.post('/reset-password/:token', async (req, res) => {
   }
 });
 
-// Registrazione
+// Register
 router.post('/register', async (req, res) => {
   const { nome, cognome, professione, sitoWebAziendale, email, password } = req.body;
 
@@ -106,7 +105,7 @@ router.post('/register', async (req, res) => {
         if (err) throw err;
         res.json({ token });
 
-        // Invia email di conferma
+        // Send confirmation mail
         sendEmail(
           email,
           'Conferma Registrazione',

@@ -13,6 +13,7 @@ import SeoInPage from './components/SeoInPage';
 import SeoOffPage from './components/SeoOffPage'; 
 import BlogPage from './components/BlogPage'; 
 import BlogPost from './components/BlogPost'; 
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/core-vitals" element={<PrivateRoute><CoreVitalsPage /></PrivateRoute>} /> 
         <Route path="/seo-in" element={<PrivateRoute><SeoInPage /></PrivateRoute>} /> 
         <Route path="/seo-off" element={<PrivateRoute><SeoOffPage /></PrivateRoute>} /> 
+        <Route path="/footer" element={<PrivateRoute><Footer /> </PrivateRoute>} /> 
         <Route path="/blog" element={<PrivateRoute><BlogPage /></PrivateRoute>} /> 
         <Route path="/blog/:id" element={<PrivateRoute><BlogPost /></PrivateRoute>} /> 
         <Route path="*" element={<Login />} /> 

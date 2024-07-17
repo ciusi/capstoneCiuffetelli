@@ -3,7 +3,7 @@
 }
 
 .navbar .container {
-  @apply flex items-center justify-between mx-auto px-24 md:px-24;
+  @apply flex items-center justify-between mx-auto px-4 md:px-24;
 }
 
 .navbar-links a {

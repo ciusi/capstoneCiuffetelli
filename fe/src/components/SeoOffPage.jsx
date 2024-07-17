@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import SeoOffAudit from './SeoOffAudit';
 import '../styles/global.css';
 import '../styles/audit.css'; 
@@ -23,6 +24,9 @@ const SeoOffPage = () => {
           </div>
         )}
         <SeoOffAudit onTestComplete={handleTestComplete} />
+      </div>
+      <div>
+      <Footer />
       </div>
     </div>
   );

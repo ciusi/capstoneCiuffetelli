@@ -1,11 +1,10 @@
-// routes/coreVitalsAudit.js
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const CoreVitalsAuditResult = require('../models/CoreVitalsAudit');
 
-// Rotta per eseguire l'analisi e salvare i risultati
+// Route to run the analysis and save the results
 router.post('/run', auth, async (req, res) => {
   const { url, device } = req.body;
   const strategy = device === 'desktop' ? 'desktop' : 'mobile';
@@ -29,7 +28,7 @@ router.post('/run', auth, async (req, res) => {
   }
 });
 
-// Rotta per recuperare i risultati salvati
+// Route to retrieve saved results
 router.get('/results', auth, async (req, res) => {
   try {
     const results = await CoreVitalsAuditResult.find({ user: req.user.id }).sort({ date: -1 });
@@ -40,7 +39,7 @@ router.get('/results', auth, async (req, res) => {
   }
 });
 
-// Rotta per aggiornare i risultati
+// Route to update results
 router.post('/refresh', auth, async (req, res) => {
   const { url, device } = req.body;
   const strategy = device === 'desktop' ? 'desktop' : 'mobile';

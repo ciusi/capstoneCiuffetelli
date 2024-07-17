@@ -1,5 +1,3 @@
-// be\models\SeoOffAudit.js
-
 const mongoose = require('mongoose');
 
 const SeoOffAuditSchema = new mongoose.Schema({

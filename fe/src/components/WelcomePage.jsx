@@ -1,17 +1,20 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import BlogCarousel from './BlogCarousel';
 
 const WelcomePage = () => {
   return (
-    <div className="welcome-page bg-main">
+    <div className="welcome-page bg-main min-h-screen flex flex-col">
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <div className="welcome-text my-8">
-          <div className="welcome-message mx-auto max-w-4xl">
-            <h2 className="text-main text-center text-4xl mb-4" >Ciao, benvenuto in SeoBoost!</h2>
-            <p><strong>Scegli con quale strumento vuoi iniziare ad analizzare il tuo sito web!</strong> L'analisi dei Core Vitals ti permetterà di stimare le prestazioni del tuo sito web. L'analisi della SEO-in ti aiuterà a capire cosa puoi migliorare nel codice e, infine, l'analisi della SEO-off ti fornirà utili suggerimenti per migliorare popolarità e autorevolezza del tuo sito web.</p>
+      <div className="container mx-auto px-4 py-8 flex-grow">
+        <div className="welcome-text my-8 text-center">
+          <div className="welcome-message mx-auto max-w-4xl px-4">
+            <h2 className="text-main text-4xl mb-4">Ciao, benvenuto in SeoBoost!</h2>
+            <p className="text-lg">
+              <strong>Scegli con quale strumento vuoi iniziare ad analizzare il tuo sito web!</strong> L'analisi dei Core Vitals ti permetterà di stimare le prestazioni del tuo sito web. L'analisi della SEO-in ti aiuterà a capire cosa puoi migliorare nel codice e, infine, l'analisi della SEO-off ti fornirà utili suggerimenti per migliorare popolarità e autorevolezza del tuo sito web.
+            </p>
           </div>
         </div>
 
@@ -42,9 +45,11 @@ const WelcomePage = () => {
         </div>
       </div>
 
-      <div>
+      <div className="my-8">
         <BlogCarousel />
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// models/CoreVitalsAuditResult.js
 const mongoose = require('mongoose');
 
 const CoreVitalsAuditResultSchema = new mongoose.Schema({

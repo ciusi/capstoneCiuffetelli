@@ -39,5 +39,5 @@ body {
 }
 
 .container {
-  @apply mx-8 px-4 md:px-24 lg:px-40;
+  @apply mx-auto px-4;
 }

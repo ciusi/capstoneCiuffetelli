@@ -1,12 +1,10 @@
-//be\routes\seoOffAudit.js
-
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const SeoOffAudit = require('../models/SeoOffAudit');
 
 // @route   POST /seo-off
-// @desc    Salva le risposte e calcola il punteggio
+// @desc    Saves answers and calculate score
 // @access  Private
 router.post('/', auth, async (req, res) => {
   const { answers } = req.body;
@@ -15,7 +13,7 @@ router.post('/', auth, async (req, res) => {
     return res.status(400).json({ msg: 'Invalid answers format' });
   }
 
-  // Calcola il punteggio totale
+  // Calculate total score
   const score = answers.reduce((total, answer) => total + answer, 0);
 
   try {
@@ -34,7 +32,7 @@ router.post('/', auth, async (req, res) => {
 
 
 // @route   GET /seo-off
-// @desc    Ottiene i risultati di SeoOffAudit per l'utente corrente
+// @desc    Get SeoOffAudit results for current user
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
