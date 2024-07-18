@@ -12,7 +12,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/blog');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/blog`);
         setArticles(response.data);
         setLoading(false);
       } catch (err) {

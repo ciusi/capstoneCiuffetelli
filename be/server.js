@@ -1,5 +1,3 @@
-// be\server.js
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -16,7 +14,7 @@ connectDB();
 
 // Configura CORS per permettere richieste dal frontend
 const corsOptions = {
-  origin: 'http://localhost:3000', // Permetti solo richieste da questo dominio
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Permetti richieste dal dominio di produzione
   credentials: true, // Permetti invio di credenziali (cookie, autorizzazioni, etc.)
 };
 

@@ -13,14 +13,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userName', res.data.userName); // Salva il nome dell'utente
-      navigate('/welcome'); // Reindirizza alla pagina di benvenuto
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userName', res.data.userName); // Salva il nome dell'utente
+        navigate('/welcome'); // Reindirizza alla pagina di benvenuto
     } catch (err) {
-      setError(err.response?.data?.msg || 'Errore durante il login');
+        setError(err.response?.data?.msg || 'Errore durante il login');
     }
-  };
+};
 
   return (
     <div className="min-h-screen bg-main flex items-center justify-center">

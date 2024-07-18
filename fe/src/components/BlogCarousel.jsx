@@ -10,7 +10,7 @@ const BlogCarousel = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/blog');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/blog`);
         setArticles(response.data.slice(0, 6)); // Mostra solo i primi 6 articoli
         setLoading(false);
       } catch (err) {

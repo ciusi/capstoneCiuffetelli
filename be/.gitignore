@@ -1,2 +1,18 @@
+# Escludi il file delle variabili d'ambiente
 .env
-node_modules
+
+# Escludi la cartella node_modules
+node_modules/
+
+# Escludi i file di log
+*.log
+
+# Escludi la cartella dei file di build 
+build/
+
+# Escludi file temporanei specifici di macOS
+.DS_Store
+
+# Escludi file di configurazione di editor di testo
+.idea/
+.vscode/

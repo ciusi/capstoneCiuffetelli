@@ -19,8 +19,9 @@ const CoreVitalsPage = () => {
         {showBanner && (
           <div className="banner bg-green-500 text-white p-4 rounded mb-4">
             <p>
-              Analisi completata! Per migliorare i risultati <a href="http://localhost:3000/blog" className="underline text-white font-bold">consulta le Guide di SeoBoost</a> e impara a padroneggiare la SEO del tuo sito web.
-            </p>
+  Analisi completata! Per migliorare i risultati <a href={`${process.env.REACT_APP_FRONTEND_URL}/blog`} className="underline text-white font-bold">consulta le Guide di SeoBoost</a> e impara a padroneggiare la SEO del tuo sito web.
+</p>
+
           </div>
         )}
         <CoreVitalsAudit onAnalysisComplete={handleAnalysisComplete} />

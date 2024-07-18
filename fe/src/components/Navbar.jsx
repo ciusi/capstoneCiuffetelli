@@ -36,7 +36,7 @@ const Navbar = () => {
           <Link to="/core-vitals" className="block md:inline text-main-dark font-bold hover:text-main transition duration-300 transform hover:scale-110 px-2 py-1">Migliora le Prestazioni</Link>
           <Link to="/seo-in" className="block md:inline text-main-dark font-bold hover:text-main transition duration-300 transform hover:scale-110 px-2 py-1">Ottimizza il sito web</Link>
           <Link to="/seo-off" className="block md:inline text-main-dark font-bold hover:text-main transition duration-300 transform hover:scale-110 px-2 py-1">Diventa popolare</Link>
-          <Link to="/coming-soon" className="navbar-download block md:inline p-2 border-none rounded bg-main cursor-pointer transition ease-in-out duration-300 hover:bg-main-dark mt-2 md:mt-0">Log Out</Link>
+          <Link to="/coming-soon" className="navbar-download block md:inline p-2 border-none rounded bg-main cursor-pointer transition ease-in-out duration-300 hover:bg-white mt-2 md:mt-0 text-white">Log Out</Link>
         </div>
       </div>
     </nav>

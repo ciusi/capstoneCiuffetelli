@@ -23,7 +23,7 @@ const CoreVitalsAudit = () => {
     setError(null);
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/core-vitals/run', 
+        `${process.env.REACT_APP_BACKEND_URL}/api/core-vitals/run`, 
         { url, device }, // includes device in req
         {
           headers: {
@@ -40,6 +40,7 @@ const CoreVitalsAudit = () => {
       setLoading(false);
     }
   };
+
 
   const handleReset = () => {
     setUrl('');

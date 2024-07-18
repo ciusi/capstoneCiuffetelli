@@ -10,7 +10,7 @@ const Confirmation = () => {
   useEffect(() => {
     const confirmRegistration = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/auth/confirmation/${token}`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/confirmation/${token}`);
         setMessage(res.data.message || 'Registrazione confermata con successo.');
         
         // Reindirizza l'utente alla pagina di audit dopo 3 secondi

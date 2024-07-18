@@ -34,9 +34,7 @@ const SeoInAudit = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post(
-        'http://localhost:5000/seo-in/seo-in-audit',
-        { url },
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/seo-in/seo-in-audit`, { url },
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,

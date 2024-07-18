@@ -40,7 +40,7 @@ function Register() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/register`, formData);
       localStorage.setItem('token', response.data.token);
       alert('Registrazione avvenuta con successo! Controlla la tua email per la conferma.');
       navigate('/Welcome'); 
