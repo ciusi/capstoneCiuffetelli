@@ -11,7 +11,7 @@ const BlogCarousel = () => {
     const fetchArticles = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/blog`);
-        setArticles(response.data.slice(0, 6)); // Mostra solo i primi 6 articoli
+        setArticles(response.data.slice(0, 3)); 
         setLoading(false);
       } catch (err) {
         setError(err.message);

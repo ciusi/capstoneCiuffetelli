@@ -290,21 +290,15 @@ const SeoOffAudit = () => {
   };
 
   const renderQuestionnaire = () => (
-    <div className="p-4 h-96">
-      <h3 className="text-main text-2xl mb-4">
-        {questions[currentQuestion].question}
-      </h3>
-      <p className="text-gray-600 text-l italic mb-2">
-        {questions[currentQuestion].explanation}
-      </p>
-      <div className="flex flex-col space-y-2">
+    <div className="p-4 h-auto md:h-96">
+      <h3 className="text-main text-2xl mb-4">{questions[currentQuestion].question}</h3>
+      <p className="text-gray-600 text-l italic mb-2">{questions[currentQuestion].explanation}</p>
+      <div className="flex flex-col md:flex-row md:space-x-2 md:space-y-0 space-y-2">
         {questions[currentQuestion].options.map((option, index) => (
           <button
             key={index}
-            onClick={() =>
-              handleAnswer(questions[currentQuestion].points[index])
-            }
-            className="p-2 bg-main text-white rounded hover:bg-main-dark transition duration-200"
+            onClick={() => handleAnswer(questions[currentQuestion].points[index])}
+            className="flex-1 p-2 bg-main text-white rounded hover:bg-main-dark transition duration-200"
           >
             {option}
           </button>
@@ -319,7 +313,7 @@ const SeoOffAudit = () => {
             Precedente
           </button>
         )}
-        <p>{`Domanda ${currentQuestion + 1} di ${questions.length}`}</p>
+        <p className="text-main">{`Domanda ${currentQuestion + 1} di ${questions.length}`}</p>
       </div>
     </div>
   );

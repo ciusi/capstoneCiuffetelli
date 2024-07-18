@@ -7,7 +7,7 @@ const SeoInAudit = require('../models/SeoInAudit');
 
 // Extended list of common stop words in Italian and JavaScript code words to exclude
 const stopWords = new Set([
-  'div', 'class', 'id', 'data', 'type', 'widget', 'container', 'async', 'role', 'group', 'element', 'swiper', 'slide', 'elementor',
+  'div', 'class', 'id', 'data', 'type', 'widget', 'container', 'async', 'role', 'group', 'element', 'swiper', 'slide', 'elementor', 'header', 'footer', 'section', 'style', 'script', 'tabtitle',
   'a', 'ad', 'al', 'allo', 'ai', 'agli', 'all', 'agl', 'alla', 'alle', 'con', 'col', 'coi', 'da', 'dal', 'dallo', 'dai', 'dagli', 'dall', 'dagl', 'dalla', 'dalle', 'di', 'del', 'dello', 'dei', 'degli', 'dell', 'degl', 'della', 'delle', 'in', 'nel', 'nello', 'nei', 'negli', 'nell', 'negl', 'nella', 'nelle', 'su', 'sul', 'sullo', 'sui', 'sugli', 'sull', 'sugl', 'sulla', 'sulle', 'per', 'tra', 'contro', 'io', 'tu', 'lui', 'lei', 'noi', 'voi', 'loro', 'mio', 'mia', 'miei', 'mie', 'tuo', 'tua', 'tuoi', 'tue', 'suo', 'sua', 'suoi', 'sue', 'nostro', 'nostra', 'nostri', 'nostre', 'vostro', 'vostra', 'vostri', 'vostre', 'mi', 'ti', 'ci', 'vi', 'lo', 'la', 'li', 'le', 'gli', 'ne', 'il', 'un', 'uno', 'una', 'ma', 'ed', 'se', 'perché', 'anche', 'come', 'dov', 'dove', 'che', 'chi', 'cui', 'non', 'quale', 'quanto', 'quanti', 'quanta', 'quante', 'quello', 'quelli', 'quella', 'quelle', 'questo', 'questi', 'questa', 'queste', 'si', 'tutto', 'tutti', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
   'avere', 'essere', 'fare', 'dire', 'venire', 'andare', 'potere', 'volere', 'sapere', 'stare', 'dovere', 'vedere', 'parlare', 'pensare', 'lavorare',
   'var', 'function', 'const', 'timeout', 'width', 'height', 'true', 'false', 'let', 'document', 'window', 'return', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'break', 'continue', 'typeof', 'new', 'null', 'undefined', 'this'
@@ -52,8 +52,9 @@ async function performSeoAnalysis(url) {
       analysis: {
         title: {
           present: !!title,
-          quality: title.length > 60 ? 'too long' : title.length < 10 ? 'too short' : 'good',
-          readability: calculateReadability(title)
+          quality: getTitleQuality(title),
+          readability: calculateReadability(title),
+          keywordDensity: calculateKeywordDensity(title, keywordSummary)
         },
         description: {
           present: !!description,
@@ -90,13 +91,21 @@ async function performSeoAnalysis(url) {
   }
 }
 
+function getTitleQuality(title) {
+  if (title.length > 60) return 'too long';
+  if (title.length < 10) return 'too short';
+  return 'good';
+}
+
 function calculateKeywordDensity(text, keywords) {
   const words = text.toLowerCase().split(/\s+/);
   const keywordDensity = {};
   keywords.forEach(({ keyword }) => {
     keywordDensity[keyword] = words.filter(word => word === keyword).length;
   });
-  return keywordDensity;
+
+  // Filtra parole chiave con conteggi positivi
+  return Object.fromEntries(Object.entries(keywordDensity).filter(([_, count]) => count > 0));
 }
 
 function calculateReadability(text) {
@@ -114,13 +123,15 @@ function getTopKeywords(text, limit) {
     .replace(/<[^>]+>/g, '') // Remove tag HTML
     .replace(/https?:\/\/[^\s]+/g, '') // Remove URL
     .replace(/&[^\s;]+;/g, '') // Remove HTML special characters
-    .replace(/[^a-zA-ZàèéìòùÀÈÉÌÒÙ\s]/g, ''); // Remove everything except letters and spaces
+    .replace(/[^a-zA-ZàèéìòùÀÈÉÌÒÙ\s]/g, '') // Remove everything except letters and spaces
+    .replace(/[\r\n]+/g, ' ') // Remove newlines and carriage returns
+    .replace(/\s+/g, ' '); // Collapse multiple spaces into one
 
   const words = cleanedText.toLowerCase().split(/\s+/);
 
   const wordCount = {};
   words.forEach(word => {
-    if (word.length > 2 && !stopWords.has(word)) {
+    if (word.length > 2 && !stopWords.has(word) && !/element/.test(word)) { // Exclude words containing 'element'
       wordCount[word] = (wordCount[word] || 0) + 1;
     }
   });
