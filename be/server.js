@@ -14,10 +14,17 @@ connectDB();
 
 // Configura CORS per permettere richieste dal frontend
 const corsOptions = {
-  origin: [
-    process.env.FRONTEND_URL, // URL del frontend distribuito su Vercel
-    'http://localhost:3000' // URL locale per sviluppo
-  ],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      'http://localhost:3000'
+    ];
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true, // Permetti invio di credenziali (cookie, autorizzazioni, etc.)
 };
 
@@ -26,13 +33,13 @@ app.use(bodyParser.json());
 
 // Middleware per gestire le richieste preflight
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', [
-    process.env.FRONTEND_URL,
-    'http://localhost:3000'
-  ]);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    return res.status(200).json({});
+  }
   next();
 });
 
