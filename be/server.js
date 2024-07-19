@@ -14,7 +14,10 @@ connectDB();
 
 // Configura CORS per permettere richieste dal frontend
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Permetti richieste dal dominio di produzione
+  origin: [
+    process.env.FRONTEND_URL, // URL del frontend distribuito su Vercel
+    'http://localhost:3000' // URL locale per sviluppo
+  ],
   credentials: true, // Permetti invio di credenziali (cookie, autorizzazioni, etc.)
 };
 
