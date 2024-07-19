@@ -13,7 +13,7 @@
 }
 
 .min-h-screen {
-  min-height: 100vh; /* Imposta l'altezza minima a 100% della finestra del browser */
+  min-height: 100vh; 
 }
 
 html, body {
