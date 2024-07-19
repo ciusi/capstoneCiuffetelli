@@ -13,15 +13,18 @@ const app = express();
 connectDB();
 
 // Configura CORS per permettere richieste dal frontend
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:3000'
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = [
-      process.env.FRONTEND_URL,
-      'http://localhost:3000'
-    ];
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    console.log('Origin:', origin); // Log dell'origine
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.log('Not allowed by CORS');
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -34,7 +37,7 @@ app.use(bodyParser.json());
 // Middleware per gestire le richieste preflight
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', allowedOrigins.join(','));
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
