@@ -26,10 +26,13 @@ app.use(bodyParser.json());
 
 // Middleware per gestire le richieste preflight
 app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).json({});
-  }
+  res.header('Access-Control-Allow-Origin', [
+    process.env.FRONTEND_URL,
+    'http://localhost:3000'
+  ]);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
