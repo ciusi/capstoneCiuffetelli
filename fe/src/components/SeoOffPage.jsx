@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import SeoOffAudit from "./SeoOffAudit";
-import "../styles/global.css";
-import "../styles/audit.css";
+import React, { useState } from 'react';
+import Navbar from './Navbar';
+import SeoOffAudit from './SeoOffAudit';
+import Footer from './Footer';
 
 const SeoOffPage = () => {
   const [showBanner, setShowBanner] = useState(false);
@@ -21,7 +19,7 @@ const SeoOffPage = () => {
             <p>
               Test completato! Per migliorare i risultati consulta le{" "}
               <a
-                href="http://localhost:3000/blog"
+                href={`${process.env.REACT_APP_FRONTEND_URL}/blog`}
                 className="underline text-white font-bold"
               >
                 Guide di SeoBoost
