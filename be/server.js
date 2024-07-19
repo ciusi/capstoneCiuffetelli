@@ -18,33 +18,21 @@ const allowedOrigins = [
   'http://localhost:3000'
 ];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log('Origin:', origin); // Log dell'origine
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.log('Not allowed by CORS');
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Permetti invio di credenziali (cookie, autorizzazioni, etc.)
-};
-
-app.use(cors(corsOptions));
-app.use(bodyParser.json());
-
-// Middleware per gestire le richieste preflight
 app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Origin', allowedOrigins.join(','));
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     return res.status(200).json({});
   }
   next();
 });
+
+app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
